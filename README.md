@@ -8,8 +8,6 @@ The notebook [script generator](./files-gen-wf.ipynb) implements the module [col
 
  ### Simulation Settings
 
----
-
 Command used to generate gromacs files necesary to start a simulation, using the `.pdb` file, and the force field selected (should be in the folder if its not one of the implemented in gromacs).
 ```
 gmx pdb2gmx -f ticf.pdb -o ticf_p.gro -water tip3p -ff amber14sb
