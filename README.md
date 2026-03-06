@@ -85,18 +85,45 @@ gmx grompp -f md.mdp -c npt.gro -t npt.cpt -p topol.top -o md_0_1.tpr
 gmx mdrun -deffnm md_0_1
 ```
 
-Additionally, for parallelization purposes you can add to the command `gmx mdrun` the following (I use this in the clusters, for example)
+For parallelization purposes you can add to the command `gmx mdrun` the following (I use this in the clusters, for example)
 ```
 gmx mdrun -deffnm md_0_1 -ntomp $OMP_NUM_THREADS -ntmpi $SLURM_NTASKS -nb gpu -pme gpu -update gpu -bonded cpu
 ```
 
- ### Analysis
+### Analysis
 
+For obtaining **state variables** and other trackable variables, you can use the following command and choose. The filename doesnt define the option, and should have the extension `.xvg`.
+```
+gmx energy -f em.edr -o datafiles/potential.xvg
+```
 
+---
+
+Unwrap trajectories of atoms and generate a new file with the trajectories unwrapped. Parameters such as boundary conditions and centering of the atoms can be choosen.
+```
+gmx trjconv -s md_0_1.tpr -f md_0_1.xtc -o md_0_1_noPBC.xtc -pbc mol -center
+```
+
+---
+
+Get the Center of Momenta of the protein.
+```
+gmx traj -f md_1.xtc -s md_1.tpr -ox com.xvg -com
+```
 
  ### Extras
 
 Continue a simulation that timed out
 ```
 srun gmx mdrun -s md_1.tpr -cpi md_1.cpt -deffnm md_1 -append -ntomp $OMP_NUM_THREADS -ntmpi $SLURM_NTASKS -nb gpu -pme gpu -update gpu -bonded cpu
+```
+
+---
+
+Extension of a finished sim - extension is in ps, regardless of the steps.
+
+Extend a simulation. Extension in $\text{ps}$, regardless of steps parameters.*
+```
+gmx convert-tpr -s md_1.tpr -extend 50000000 -o md_1_cont.tpr
+gmx mdrun -s md_1_cont.tpr -cpi md_1.cpt -deffnm md_1 -append -ntomp $OMP_NUM_THREADS -ntmpi $SLURM_NTASKS -nb gpu -pme gpu -update gpu -bonded cpu
 ```
