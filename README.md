@@ -120,8 +120,6 @@ srun gmx mdrun -s md_1.tpr -cpi md_1.cpt -deffnm md_1 -append -ntomp $OMP_NUM_TH
 
 ---
 
-Extension of a finished sim - extension is in ps, regardless of the steps.
-
 Extend a simulation. Extension in $\text{ps}$, regardless of steps parameters.*
 ```
 gmx convert-tpr -s md_1.tpr -extend 50000000 -o md_1_cont.tpr
