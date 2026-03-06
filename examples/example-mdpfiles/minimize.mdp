@@ -1,0 +1,16 @@
+; minim.mdp - used as input into grompp to generate em.tpr
+; Its a modified version of the paper, to see how well this performs compared to the other
+; Parameters describing what to do, when to stop and what to save
+integrator  = steep         ; Algorithm conjugate gradient, we will add steep once in a while    
+emtol       = 250.0        ; Stop minimization
+emstep      = 0.01          ; Minimization step size
+nsteps      = 50000         ; Maximum number of (minimization) steps to perform
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+nstlist         = 20         ; Frequency to update the neighbor list and long range forces
+cutoff-scheme   = Verlet    ; Buffered neighbor searching
+ns_type         = grid      ; Method to determine neighbor list (simple, grid)
+coulombtype     = PME       ; Particle Mesh Ewald
+rcoulomb        = 1.2       ; Short-range electrostatic cut-off
+rvdw            = 1.2       ; Short-range Van der Waals cut-off
+pbc             = xyz       ; Periodic Boundary Conditions in all 3 dimensions
