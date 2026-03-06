@@ -1,8 +1,12 @@
 # collagenMDsSupport
 
 The notebook [script generator](./python-scriptgenerator/files-gen-wf.ipynb) implements the module [colfib](./python-scriptgenerator/colfib.py), which contains functions that based on templates of my own scripts, to generate new scripts with different parameters for running a simulation. The use of this notebook is pretty simple, with most specifications in both the notebook and in the functions contained in the module. The structure for running the commands is:
+
  -`steps.sh` is ran locally, using `chmod +x` to activate it, and previously having activated the `GMX` executable through `source /usr/local/gromacs/bin/gmxrc`, which should have the path to the executable. The version used is the **2024.4**, in accordance to the latest version at the time implemented in ACENET.
+
  -`{filename}-script.sh` is the script to run remotely, using the command `sbatch {filename}-script.sh`. Consider also the resources asked for, as the limit may ary across different clusters.
+
+ Additionally, theres some examples of [mdp files](./examples/example-mdpfiles/) and [scripts](./examples/)
 
  ## General GMX commands
 
