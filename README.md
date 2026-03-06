@@ -1,4 +1,4 @@
-# collagenMDsSupport
+# Support for Collagen MDs
 
 The notebook [script generator](./python-scriptgenerator/files-gen-wf.ipynb) implements the module [colfib](./python-scriptgenerator/colfib.py), which contains functions that based on templates of my own scripts, to generate new scripts with different parameters for running a simulation. The use of this notebook is pretty simple, with most specifications in both the notebook and in the functions contained in the module. The structure for running the commands is:
 
